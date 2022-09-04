@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('slug');
             $table->text('extract');
             $table->text('body');
-            $table->enum('status', ['draft', 'post'])->default('draft');
+            $table->enum('status', ['draft', 'published'])->default('draft');
             $table->foreignId('category_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
