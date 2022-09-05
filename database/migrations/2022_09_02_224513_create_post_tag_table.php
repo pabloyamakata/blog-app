@@ -13,6 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
+        // Creates intermediate table between posts and tags (many to many)
         Schema::create('post_tag', function (Blueprint $table) {
             $table->id();
             $table->foreignId('post_id')->constrained()->cascadeOnDelete();
