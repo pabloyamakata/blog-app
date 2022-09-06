@@ -9,7 +9,6 @@ use App\Models\Tag;
 use Illuminate\Database\Seeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\PostSeeder;
-use Illuminate\Support\Facades\Storage;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,9 +19,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Storage::deleteDirectory('posts');
-        Storage::makeDirectory('posts');
-
         $this->call(UserSeeder::class);
         Category::factory(4)->create();
         Tag::factory(6)->create();
