@@ -17,7 +17,12 @@ class ImageFactory extends Factory
     public function definition()
     {
         return [
-            'url' => 'posts/' . fake()->image('public/storage/posts', 640, 480, null, false)
+            'url' => 'posts/' . fake()->randomElement([
+                'cathedral.jpg',
+                'hungary.jpg',
+                'japan.jpg',
+                'ravine.jpg'
+            ])
         ];
     }
 }
