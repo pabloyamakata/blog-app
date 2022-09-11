@@ -21,3 +21,19 @@ const toggleMobileMenu = () => {
 };
 
 hamburgerBtn.addEventListener('click', toggleMobileMenu);
+
+// Close menus when user clicks outside the specified elements.
+window.addEventListener('click', event => {
+    const isAvatarClicked = event.composedPath().includes(avatar);
+    const isHamburgerClicked = event.composedPath().includes(hamburgerBtn);
+
+    if(!isAvatarClicked) {
+        dropdownMenu.classList.add('hidden');
+    }
+
+    if(!isHamburgerClicked) {
+        mobileMenu.classList.add('hidden');
+        hamburgerIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+    }
+});
