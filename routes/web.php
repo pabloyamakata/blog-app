@@ -14,9 +14,7 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/', 'home.index');
 
 Route::controller(AuthController::class)->group(function() {
     Route::get('login', 'login')->name('auth.login');
