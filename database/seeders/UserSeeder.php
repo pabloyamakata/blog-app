@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
         User::factory()->create([
             'name' => 'Pablo Yamakata',
             'email' => 'pablo.yamakata@gmail.com',
-            'password' => password_hash('blog', PASSWORD_BCRYPT)
+            'password' => 'blog'
         ]);
 
         User::factory(19)->create();
