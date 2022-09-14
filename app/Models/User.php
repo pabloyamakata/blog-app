@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Post;
 use App\Models\Image;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class User extends Authenticatable
 {
@@ -52,5 +53,12 @@ class User extends Authenticatable
     public function image()
     {
         return $this->morphOne(Image::class, 'imageable');
+    }
+
+    protected function password(): Attribute
+    {
+        return Attribute::make(
+            set: fn($password) => password_hash($password, PASSWORD_BCRYPT)
+        );
     }
 }
