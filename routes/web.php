@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +15,7 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::view('/', 'home.index');
+Route::get('/' , [PostController::class, 'index'])->name('posts.index');
 
 Route::controller(AuthController::class)->group(function() {
     Route::get('login', 'login')->name('auth.login');
