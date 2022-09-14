@@ -6,7 +6,7 @@ const toggleDropdownMenu = () => {
     dropdownMenu.classList.toggle('hidden');
 };
 
-if(avatar && dropdownMenu) {
+if(avatar) {
     avatar.addEventListener('click', toggleDropdownMenu);
 }
 
@@ -22,7 +22,9 @@ const toggleMobileMenu = () => {
     closeIcon.classList.toggle('hidden');
 };
 
-hamburgerBtn.addEventListener('click', toggleMobileMenu);
+if(hamburgerBtn) {
+    hamburgerBtn.addEventListener('click', toggleMobileMenu);
+}
 
 // Close menus when user clicks outside the specified elements.
 window.addEventListener('click', event => {
@@ -33,7 +35,7 @@ window.addEventListener('click', event => {
         dropdownMenu.classList.add('hidden');
     }
 
-    if(!isHamburgerClicked) {
+    if(!isHamburgerClicked && mobileMenu) {
         mobileMenu.classList.add('hidden');
         hamburgerIcon.classList.remove('hidden');
         closeIcon.classList.add('hidden');
