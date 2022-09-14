@@ -6,7 +6,9 @@ const toggleDropdownMenu = () => {
     dropdownMenu.classList.toggle('hidden');
 };
 
-avatar.addEventListener('click', toggleDropdownMenu);
+if(avatar && dropdownMenu) {
+    avatar.addEventListener('click', toggleDropdownMenu);
+}
 
 // Toggle mobile navbar menu when user clicks on hamburger/close icon.
 const hamburgerBtn = document.getElementById('hamburger-btn');
@@ -27,7 +29,7 @@ window.addEventListener('click', event => {
     const isAvatarClicked = event.composedPath().includes(avatar);
     const isHamburgerClicked = event.composedPath().includes(hamburgerBtn);
 
-    if(!isAvatarClicked) {
+    if(!isAvatarClicked && dropdownMenu) {
         dropdownMenu.classList.add('hidden');
     }
 
@@ -41,7 +43,9 @@ window.addEventListener('click', event => {
 // Log user out
 const logout = document.getElementById('logout');
 
-logout.addEventListener('click', event => {
-    event.preventDefault();
-    event.target.closest('form').submit();
-});
+if(logout) {
+    logout.addEventListener('click', event => {
+        event.preventDefault();
+        event.target.closest('form').submit();
+    });
+}
