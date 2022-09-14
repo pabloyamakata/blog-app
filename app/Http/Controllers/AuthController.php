@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Http\Requests\RegisterUser;
 
 class AuthController extends Controller
 {
@@ -11,9 +14,23 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function authenticate()
+    public function authenticate(Request $request)
     {
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
 
+        if(Auth::attempt($credentials))
+        {
+            $request->session()->regenerate();
+
+            return redirect('/');
+        }
+
+        return back()->withErrors([
+            'auth' => 'The provided credentials do not match our records.'
+        ]);
     }
 
     public function registration()
@@ -21,13 +38,20 @@ class AuthController extends Controller
         return view('auth.registration');
     }
 
-    public function register()
+    public function register(RegisterUser $request)
     {
+        $user = User::create($request->validated());
+        Auth::login($user);
 
+        return redirect('/')->with('success', 'Account successfully created.');
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-        
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }
