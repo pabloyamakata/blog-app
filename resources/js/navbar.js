@@ -37,3 +37,11 @@ window.addEventListener('click', event => {
         closeIcon.classList.add('hidden');
     }
 });
+
+// Log user out
+const logout = document.getElementById('logout');
+
+logout.addEventListener('click', event => {
+    event.preventDefault();
+    event.target.closest('form').submit();
+});
