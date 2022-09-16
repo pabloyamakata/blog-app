@@ -25,7 +25,7 @@ class AuthController extends Controller
         {
             $request->session()->regenerate();
 
-            return redirect('/');
+            return redirect()->route('posts.index');
         }
 
         return back()->withErrors([
@@ -43,7 +43,7 @@ class AuthController extends Controller
         $user = User::create($request->validated());
         Auth::login($user);
 
-        return redirect('/')->with('success', 'Account successfully created.');
+        return redirect()->route('posts.index');
     }
 
     public function logout(Request $request)
@@ -52,6 +52,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect()->route('posts.index');
     }
 }
