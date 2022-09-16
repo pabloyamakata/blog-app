@@ -15,7 +15,10 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('/' , [PostController::class, 'index'])->name('posts.index');
+Route::controller(PostController::class)->group(function() {
+    Route::get('/', 'index')->name('posts.index');
+    Route::get('posts/{post}', 'show')->name('posts.show');
+});
 
 Route::controller(AuthController::class)->group(function() {
     Route::get('login', 'login')->name('auth.login');
