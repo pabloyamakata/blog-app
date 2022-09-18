@@ -1,4 +1,4 @@
-<x-admin-layout>
+<x-app-layout>
     <x-slot:title>{{ $post->name }}</x-slot>
     <x-navbar />
 
@@ -32,4 +32,4 @@
         </div>
     </div>
 
-</x-admin-layout>
+</x-app-layout>
