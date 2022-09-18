@@ -18,6 +18,7 @@ use App\Http\Controllers\PostController;
 Route::controller(PostController::class)->group(function() {
     Route::get('/', 'index')->name('posts.index');
     Route::get('posts/{post}', 'show')->name('posts.show');
+    Route::get('category/{category}', 'category')->name('posts.category');
 });
 
 Route::controller(AuthController::class)->group(function() {
