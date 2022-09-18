@@ -1,4 +1,4 @@
-<x-admin-layout>
+<x-app-layout>
     <x-slot:title>Home</x-slot>
     <x-navbar />
 
@@ -25,4 +25,4 @@
         </div>
     </div>
 
-</x-admin-layout>
+</x-app-layout>

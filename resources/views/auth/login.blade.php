@@ -1,4 +1,4 @@
-<x-admin-layout>
+<x-app-layout>
     <x-slot:title>Login</x-slot>
     <x-login-form />
-</x-admin-layout>
+</x-app-layout>
