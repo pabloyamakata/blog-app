@@ -23,6 +23,6 @@ class RegistrationForm extends Component
      */
     public function render()
     {
-        return view('components.registration');
+        return view('components.registration-form');
     }
 }
