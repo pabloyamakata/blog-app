@@ -25,7 +25,7 @@ class AuthController extends Controller
         {
             $request->session()->regenerate();
 
-            return redirect()->route('posts.index');
+            return redirect()->intended();
         }
 
         return back()->withErrors([
@@ -43,7 +43,7 @@ class AuthController extends Controller
         $user = User::create($request->validated());
         Auth::login($user);
 
-        return redirect()->route('posts.index');
+        return redirect()->intended();
     }
 
     public function logout(Request $request)
