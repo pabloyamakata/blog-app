@@ -316,11 +316,11 @@ return [
             'route'         => 'admin.index',
             'icon'        => 'far fa-fw fa-file',
         ],
-        ['header' => 'account_settings'],
+        ['header' => 'ADMIN SETTINGS'],
         [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
+            'text' => 'Categories',
+            'route'  => 'admin.categories.index',
+            'icon' => 'fas fa-fw fa-layer-group',
         ],
         [
             'text' => 'change_password',
