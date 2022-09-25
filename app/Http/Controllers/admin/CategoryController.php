@@ -15,7 +15,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.categories.index');
+        $categories = Category::all();
+
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -36,7 +38,17 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:100|unique:categories'
+        ]);
+
+        Category::create([
+            'name' => $request->name,
+            'slug' => $request->name
+        ]);
+
+        return redirect()->route('admin.categories.create')
+                         ->with('store-category-success', 'Record was created successfully');
     }
 
     /**
