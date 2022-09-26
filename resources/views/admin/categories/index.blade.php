@@ -7,6 +7,13 @@
 @stop
 
 @section('content')
+
+    @if(session()->has('destroy-category-success'))
+        <div class="alert alert-success">
+            {{ session()->get('destroy-category-success') }}
+        </div>
+    @endif
+
     <div class="card">
         <div class="card-header">
             <a href="{{ route('admin.categories.create') }}" class="btn btn-secondary">Add Category</a>

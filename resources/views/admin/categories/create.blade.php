@@ -7,6 +7,13 @@
 @stop
 
 @section('content')
+
+    @if(session()->has('store-category-success'))
+        <div class="alert alert-success">
+            {{ session()->get('store-category-success') }}
+        </div>
+    @endif
+
     <div class="card">
         <div class="card-body">
             <form action="{{ route('admin.categories.store') }}" method="POST">
@@ -20,10 +27,6 @@
                     @error('name')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
-
-                    @if(session()->has('store-category-success'))
-                        <span class="text-success">{{ session()->get('store-category-success') }}</span>
-                    @endif
                 </div>
         
                 <button type="submit" class="btn btn-primary">

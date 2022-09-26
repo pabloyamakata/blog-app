@@ -7,6 +7,13 @@
 @stop
 
 @section('content')
+
+    @if(session()->has('update-category-success'))
+        <div class="alert alert-success">
+            {{ session()->get('update-category-success') }}
+        </div>
+    @endif
+
     <div class="card">
         <div class="card-body">
             <form action="{{ route('admin.categories.update', $category) }}" method="POST">
@@ -21,10 +28,6 @@
                     @error('name')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
-
-                    @if(session()->has('update-category-success'))
-                        <span class="text-success">{{ session()->get('update-category-success') }}</span>
-                    @endif
                 </div>
     
                 <button type="submit" class="btn btn-primary">
