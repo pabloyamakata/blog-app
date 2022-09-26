@@ -39,7 +39,7 @@
                         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
 
                         @foreach($categories as $category)
-                            <a href="{{ route('posts.category', $category) }}" class="{{ request()->path() == 'category/' . $category->id ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} px-3 py-2 rounded-md text-sm font-medium">{{ $category->name }}</a>
+                            <a href="{{ route('posts.category', $category) }}" class="{{ request()->path() == 'category/' . $category->slug ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} px-3 py-2 rounded-md text-sm font-medium">{{ $category->name }}</a>
                         @endforeach
 
                     </div>
@@ -109,7 +109,7 @@
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
 
             @foreach($categories as $category)
-                <a href="{{ route('posts.category', $category) }}" class="{{ request()->path() == 'category/' . $category->id ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} block px-3 py-2 rounded-md text-base font-medium">{{ $category->name }}</a>
+                <a href="{{ route('posts.category', $category) }}" class="{{ request()->path() == 'category/' . $category->slug ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} block px-3 py-2 rounded-md text-base font-medium">{{ $category->name }}</a>
             @endforeach
   
         </div>
