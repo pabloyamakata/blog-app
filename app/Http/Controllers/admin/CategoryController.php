@@ -82,7 +82,17 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:100|unique:categories'
+        ]);
+
+        $category->update([
+            'name' => $request->name,
+            'slug' => $request->name
+        ]);
+
+        return redirect()->route('admin.categories.edit', $category)
+                         ->with('update-category-success', 'Record was updated successfully');
     }
 
     /**
@@ -93,6 +103,9 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+        return redirect()->route('admin.categories.index')
+                         ->with('destroy-category-success', 'Record was deleted successfully');
     }
 }
