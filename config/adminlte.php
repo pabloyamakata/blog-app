@@ -314,7 +314,7 @@ return [
         [
             'text'        => 'Dashboard',
             'route'         => 'admin.index',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'fas fa-fw fa-chart-line',
         ],
         ['header' => 'ADMIN SETTINGS'],
         [
