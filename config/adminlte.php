@@ -323,9 +323,9 @@ return [
             'icon' => 'fas fa-fw fa-layer-group',
         ],
         [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
+            'text' => 'Tags',
+            'route'  => 'admin.tags.index',
+            'icon' => 'fas fa-fw fa-bookmark',
         ],
         [
             'text'    => 'multilevel',
