@@ -8,6 +8,8 @@ use App\Models\Tag;
 
 class TagController extends Controller
 {
+    private $colors = ['red', 'green', 'blue', 'purple', 'indigo', 'orange', 'yellow'];
+
     /**
      * Display a listing of the resource.
      *
@@ -27,9 +29,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        $colors = ['red', 'green', 'blue', 'purple', 'indigo', 'orange', 'yellow'];
-
-        return view('admin.tags.create', compact('colors'));
+        return view('admin.tags.create', ['colors' => $this->colors]);
     }
 
     /**
@@ -74,9 +74,10 @@ class TagController extends Controller
      */
     public function edit(Tag $tag)
     {
-        $colors = ['red', 'green', 'blue', 'purple', 'indigo', 'orange', 'yellow'];
-
-        return view('admin.tags.edit', compact('tag', 'colors'));
+        return view('admin.tags.edit', [
+            'tag' => $tag,
+            'colors' => $this->colors
+        ]);
     }
 
     /**
