@@ -22,6 +22,6 @@ class UserSeeder extends Seeder
             'password' => 'blog'
         ]);
 
-        User::factory(19)->create();
+        User::factory(9)->create();
     }
 }
