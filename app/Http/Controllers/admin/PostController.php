@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Tag;
+use App\Http\Requests\StorePost;
 
 class PostController extends Controller
 {
@@ -41,9 +42,24 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePost $request)
     {
-        //
+        $post = Post::create([
+            'name' => $request->name,
+            'slug' => $request->name,
+            'extract' => $request->extract,
+            'body' => $request->body,
+            'status' => $request->status,
+            'category_id' => $request->category,
+            'user_id' => $request->user_id
+        ]);
+
+        if($request->tags) {
+            $post->tags()->attach($request->tags);
+        }
+
+        return redirect()->route('admin.posts.create')
+                         ->with('store-post-success', 'Record was created successfully');
     }
 
     /**
