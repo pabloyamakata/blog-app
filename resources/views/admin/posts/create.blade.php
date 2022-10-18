@@ -19,6 +19,8 @@
             <form action="{{ route('admin.posts.store') }}" method="POST">
 
                 @csrf
+
+                <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
         
                 <div class="mb-3">
                     <label for="new-post-name" class="form-label">Name</label>
@@ -31,7 +33,7 @@
 
                 <div class="mb-3">
                     <label for="new-post-category" class="form-label">Category</label>
-                    <select name="category_id" id="new-post-category" class="form-control">
+                    <select name="category" id="new-post-category" class="form-control">
                         <option disabled selected> -- select an option -- </option>
 
                         @foreach($categories as $category)
@@ -42,7 +44,7 @@
 
                     </select>
 
-                    @error('category_id')
+                    @error('category')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
@@ -56,6 +58,10 @@
                             {{ $tag->name }}
                         </label>
                     @endforeach
+
+                    @error('tags')
+                        <span class="d-block text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <div class="mb-3">
@@ -70,11 +76,17 @@
                         <input type="radio" name="status" value="published">
                         Published
                     </label>
+
+                    @error('status')
+                        <span class="d-block text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <div class="mb-3">
                     <label for="new-post-extract" class="form-label">Extract:</label>
-                    <textarea class="form-control" name="extract" id="new-post-extract"></textarea>
+                    <textarea class="form-control" name="extract" id="new-post-extract">
+                        {{ old('extract') }}
+                    </textarea>
 
                     @error('extract')
                         <span class="text-danger">{{ $message }}</span>
@@ -82,8 +94,10 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="new-post-body" class="form-label">Content:</label>
-                    <textarea class="form-control" name="body" id="new-post-body"></textarea>
+                    <label for="new-post-body" class="form-label">Body:</label>
+                    <textarea class="form-control" name="body" id="new-post-body">
+                        {{ old('body') }}
+                    </textarea>
 
                     @error('body')
                         <span class="text-danger">{{ $message }}</span>
