@@ -8,10 +8,14 @@ use App\Models\User;
 use App\Models\Category;
 use App\Models\Tag;
 use App\Models\Image;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Support\Str;
 
 class Post extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['id', 'created_at', 'updated_at'];
 
     public function user()
     {
@@ -31,5 +35,12 @@ class Post extends Model
     public function image()
     {
         return $this->morphOne(Image::class, 'imageable');
+    }
+
+    protected function slug(): Attribute
+    {
+        return Attribute::make(
+            set: fn($name) => Str::slug($name)
+        );
     }
 }
