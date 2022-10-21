@@ -1,6 +1,6 @@
 <article class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md">
     <a href="{{ route('posts.show', $post) }}">
-        <img class="w-full h-72 rounded-t-lg object-cover object-center" src="{{ Storage::url($post->image->url) }}" alt="Post">
+        <img class="w-full h-72 rounded-t-lg object-cover object-center" src="@if($post->image) {{ Storage::url($post->image->url) }} @else {{ Storage::url('posts/venice.jpg') }} @endif" alt="Post">
     </a>
     <div class="p-5">
         <a href="{{ route('posts.show', $post) }}">
