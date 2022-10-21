@@ -11,7 +11,7 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div class="lg:col-span-2">
-                <img class="w-full h-80 object-cover object-center" src="{{ Storage::url($post->image->url) }}" alt="Post">
+                <img class="w-full h-80 object-cover object-center" src="@if($post->image) {{ Storage::url($post->image->url) }} @else {{ Storage::url('posts/venice.jpg') }} @endif" alt="Post">
                 <div class="text-base text-gray-500 mt-4">
                     {{ $post->body }}
                 </div>
