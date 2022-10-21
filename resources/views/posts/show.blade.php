@@ -22,7 +22,7 @@
                     @foreach ($relatedPosts as $relatedPost)
                         <li class="mb-4">
                             <a class="flex" href="{{ route('posts.show', $relatedPost) }}">
-                                <img class="min-w-[144px] h-20 object-cover object-center" src="{{ Storage::url($relatedPost->image->url) }}" alt="Related post">
+                                <img class="min-w-[144px] h-20 object-cover object-center" src="@if($relatedPost->image) {{ Storage::url($relatedPost->image->url) }} @else {{ Storage::url('posts/venice.jpg') }} @endif" alt="Related post">
                                 <span class="ml-2 text-gray-600">{{ $relatedPost->name }}</span>
                             </a>
                         </li>
