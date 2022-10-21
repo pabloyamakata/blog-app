@@ -6,14 +6,14 @@
         <h2 class="text-4xl font-bold text-gray-600">{{ $post->name }}</h2>
 
         <div class="max-w-[845.33px] mb-2 pt-3 text-lg text-gray-500">
-            {{ $post->extract }}
+            {!! $post->extract !!}
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div class="lg:col-span-2">
                 <img class="w-full h-80 object-cover object-center" src="@if($post->image) {{ Storage::url($post->image->url) }} @else {{ Storage::url('posts/venice.jpg') }} @endif" alt="Post">
                 <div class="text-base text-gray-500 mt-4">
-                    {{ $post->body }}
+                    {!! $post->body !!}
                 </div>
             </div>
             <aside>
