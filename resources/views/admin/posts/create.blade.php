@@ -16,7 +16,7 @@
 
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('admin.posts.store') }}" method="POST">
+            <form enctype="multipart/form-data" action="{{ route('admin.posts.store') }}" method="POST">
 
                 @csrf
 
@@ -82,6 +82,25 @@
                     @enderror
                 </div>
 
+                <div class="row mb-3">
+                    <div class="col">
+                        <div class="image-container">
+                            <img id="default-img" src="{{ Storage::url('posts/venice.jpg') }}" alt="Post">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="mb-3">
+                            <label for="new-post-file" class="form-label">Image to be displayed in the post</label>
+                            <input type="file" name="file" class="form-control-file" id="new-post-file" accept="image/*">
+                        
+                            @error('file')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam facere voluptatibus autem accusamus aliquid quis omnis nisi asperiores, itaque obcaecati
+                    </div>
+                </div>
+
                 <div class="mb-3">
                     <label for="new-post-extract" class="form-label">Extract:</label>
                     <textarea class="form-control" name="extract" id="new-post-extract">
@@ -112,6 +131,22 @@
     </div>
 @stop
 
+@section('css')
+    <style>
+        .image-container {
+            position: relative;
+            padding-bottom: 56.25%;
+        }
+
+        .image-container img {
+            position: absolute;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+@endsection
+
 @section('js')
     <script src="https://cdn.ckeditor.com/ckeditor5/35.2.0/classic/ckeditor.js"></script>
 
@@ -123,5 +158,16 @@
         ClassicEditor
             .create(document.querySelector('#new-post-body'))
             .catch(error => console.error(error));
-    </script>    
+
+        // Display the image uploaded to the input of type file
+        document.getElementById('new-post-file').addEventListener('change', event => {
+            const file = event.target.files[0];
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+
+            fileReader.onload = function () {
+                document.getElementById('default-img').setAttribute('src', fileReader.result);
+            }
+        });
+    </script>
 @endsection
