@@ -30,7 +30,8 @@ class StorePost extends FormRequest
         $rules = [
             'name' => 'required|string|unique:posts',
             'status' => 'required|in:draft,published',
-            'category' => 'required'
+            'category' => 'required',
+            'file' => 'image'
         ];
 
         if($this->status == 'published') {
