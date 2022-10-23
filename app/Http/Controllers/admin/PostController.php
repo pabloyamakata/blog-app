@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Models\Category;
 use App\Models\Tag;
 use App\Http\Requests\StorePost;
+use App\Http\Requests\UpdatePost;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -89,7 +90,11 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('admin.posts.edit', compact('post'));
+        $categories = Category::all();
+        $tags = Tag::all();
+        $postTags = $post->tags->pluck('id')->all();
+
+        return view('admin.posts.edit', compact('post', 'categories', 'tags', 'postTags'));
     }
 
     /**
@@ -99,9 +104,39 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(UpdatePost $request, Post $post)
     {
-        //
+        $post->update([
+            'name' => $request->name,
+            'slug' => $request->name,
+            'extract' => $request->extract,
+            'body' => $request->body,
+            'status' => $request->status,
+            'category_id' => $request->category
+        ]);
+
+        if($request->file('file')) {
+            $url = Storage::put('public/posts', $request->file('file'));
+
+            if($post->image) {
+                Storage::delete($post->image->url);
+
+                $post->image->update([
+                    'url' => $url
+                ]);
+            } else {
+                $post->image()->create([
+                    'url' => $url
+                ]);
+            }
+        }
+
+        if($request->tags) {
+            $post->tags()->sync($request->tags);
+        }
+
+        return redirect()->route('admin.posts.edit', $post)
+                         ->with('update-post-success', 'Record was updated successfully');
     }
 
     /**
