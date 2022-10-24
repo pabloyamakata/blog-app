@@ -147,6 +147,14 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        if($post->image) {
+            $post->image->delete();
+            Storage::delete($post->image->url);
+        }
+
+        $post->delete();
+
+        return redirect()->route('admin.posts.index')
+                         ->with('destroy-post-success', 'Record was deleted successfully');
     }
 }
