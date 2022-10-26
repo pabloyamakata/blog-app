@@ -90,6 +90,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        $this->authorize('isAuthor', $post);
+
         $categories = Category::all();
         $tags = Tag::all();
         $postTags = $post->tags->pluck('id')->all();
@@ -106,6 +108,8 @@ class PostController extends Controller
      */
     public function update(UpdatePost $request, Post $post)
     {
+        $this->authorize('isAuthor', $post);
+
         $post->update([
             'name' => $request->name,
             'slug' => $request->name,
@@ -147,6 +151,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $this->authorize('isAuthor', $post);
+        
         if($post->image) {
             $post->image->delete();
             Storage::delete($post->image->url);
