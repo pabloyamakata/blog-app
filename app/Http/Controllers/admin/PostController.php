@@ -154,8 +154,8 @@ class PostController extends Controller
         $this->authorize('isAuthor', $post);
         
         if($post->image) {
-            $post->image->delete();
             Storage::delete($post->image->url);
+            $post->image->delete();
         }
 
         $post->delete();
