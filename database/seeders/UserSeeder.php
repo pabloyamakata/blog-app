@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
             'name' => 'Pablo Yamakata',
             'email' => 'pablo.yamakata@gmail.com',
             'password' => 'blog'
-        ]);
+        ])->assignRole('admin');
 
         User::factory(9)->create();
     }
