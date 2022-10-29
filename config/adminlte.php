@@ -316,6 +316,11 @@ return [
             'route'         => 'admin.index',
             'icon'        => 'fas fa-fw fa-chart-line',
         ],
+        [
+            'text'        => 'Users',
+            'route'         => 'admin.users.index',
+            'icon'        => 'fas fa-fw fa-users',
+        ],
         ['header' => 'ADMIN SETTINGS'],
         [
             'text' => 'Categories',
