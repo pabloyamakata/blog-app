@@ -315,35 +315,40 @@ return [
             'text'        => 'Dashboard',
             'route'         => 'admin.index',
             'icon'        => 'fas fa-fw fa-chart-line',
+            'can' => 'admin.index',
         ],
         [
             'text'        => 'Users',
             'route'         => 'admin.users.index',
             'icon'        => 'fas fa-fw fa-users',
+            'can' => 'admin.users.index',
         ],
-        ['header' => 'ADMIN SETTINGS'],
         [
             'text' => 'Categories',
             'route'  => 'admin.categories.index',
             'icon' => 'fas fa-fw fa-layer-group',
-            'active' => ['admin/categories*']
+            'active' => ['admin/categories*'],
+            'can' => 'admin.categories.index',
         ],
         [
             'text' => 'Tags',
             'route'  => 'admin.tags.index',
             'icon' => 'fas fa-fw fa-bookmark',
-            'active' => ['admin/tags*']
+            'active' => ['admin/tags*'],
+            'can' => 'admin.tags.index',
         ],
         ['header' => 'BLOG OPTIONS'],
         [
             'text' => 'Posts',
             'route' => 'admin.posts.index',
-            'icon' => 'fas fa-fw fa-clipboard'
+            'icon' => 'fas fa-fw fa-clipboard',
+            'can' => 'admin.posts.index',
         ],
         [
             'text' => 'New Post',
             'route' => 'admin.posts.create',
-            'icon' => 'fas fa-fw fa-file'
+            'icon' => 'fas fa-fw fa-file',
+            'can' => 'admin.posts.create'
         ],
     ],
 
