@@ -2,7 +2,7 @@
     <x-slot:title>{{ $post->name }}</x-slot>
     <x-navbar />
 
-    <div class="container mx-auto py-8">
+    <div class="container py-8">
         <h2 class="text-4xl font-bold text-gray-600">{{ $post->name }}</h2>
 
         <div class="max-w-[845.33px] mb-2 pt-3 text-lg text-gray-500">

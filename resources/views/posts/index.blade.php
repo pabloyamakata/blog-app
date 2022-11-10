@@ -2,7 +2,7 @@
     <x-slot:title>Home</x-slot>
     <x-navbar />
 
-    <div class="container mx-auto py-8">
+    <div class="container py-8">
         <div class="md:grid-cols-2 lg:grid-cols-3 grid grid-cols-1 gap-6">
             @foreach($posts as $post)
                 <article style="background-image: url(@if($post->image) {{ Storage::url($post->image->url) }} @else {{ Storage::url('posts/venice.jpg') }} @endif)" class="w-full h-80 bg-cover bg-center @if($loop->first) md:col-span-2 @endif">
