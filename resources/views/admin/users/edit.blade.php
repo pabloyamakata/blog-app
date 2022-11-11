@@ -29,7 +29,7 @@
                     <div>
                         <label>
                             <input class="mr-1" type="checkbox" name="roles[]" value="{{ $role->id }}" @checked(in_array($role->id, $userRoles))>
-                            {{ ucfirst($role->name) }}
+                            {{ $role->name }}
                         </label>
                     </div>
                 @endforeach
