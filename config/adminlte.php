@@ -321,12 +321,14 @@ return [
             'text'        => 'Users',
             'route'         => 'admin.users.index',
             'icon'        => 'fas fa-fw fa-users',
+            'active' => ['admin/users*'],
             'can' => 'admin.users.index',
         ],
         [
             'text'        => 'Roles',
             'route'         => 'admin.roles.index',
             'icon'        => 'fas fa-fw fa-users-cog',
+            'active' => ['admin/roles*'],
             // 'can' => 'admin.users.index',
         ],
         [
@@ -348,6 +350,7 @@ return [
             'text' => 'Posts',
             'route' => 'admin.posts.index',
             'icon' => 'fas fa-fw fa-clipboard',
+            'active' => ['admin/posts*'],
             'can' => 'admin.posts.index',
         ],
         [
