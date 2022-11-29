@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +29,8 @@ Route::controller(AuthController::class)->group(function() {
     Route::get('registration', 'registration')->name('auth.registration');
     Route::post('registration', 'register')->name('auth.register');
     Route::post('logout', 'logout')->name('auth.logout');
+});
+
+Route::controller(ProfileController::class)->group(function() {
+    Route::get('profile', 'index')->name('profile.index');
 });
