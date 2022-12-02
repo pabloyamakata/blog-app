@@ -3,6 +3,7 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use App\Models\User;
 
 class Profile extends Component
 {
@@ -23,6 +24,18 @@ class Profile extends Component
      */
     public function render()
     {
-        return view('components.profile');
+        $user = User::find(auth()->user()->id);
+        $roleCount = $user->getRoleNames()->count();
+        $roles = 'None';
+
+        if($roleCount == 1)
+        {
+            $roles = $user->getRoleNames()[0];
+        } elseif($roleCount > 1)
+        {
+            $roles = $user->getRoleNames()->implode(', ');
+        }
+
+        return view('components.profile', compact('user', 'roles'));
     }
 }
