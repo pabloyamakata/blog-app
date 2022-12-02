@@ -62,4 +62,9 @@ class User extends Authenticatable
             set: fn($password) => password_hash($password, PASSWORD_BCRYPT)
         );
     }
+
+    public function adminlte_profile_url()
+    {
+        return 'profile';
+    }
 }
