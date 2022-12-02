@@ -15,6 +15,11 @@ class ProfileController extends Controller
 
     public function edit(User $user)
     {
+        if(!auth()->user() || auth()->user()->id != $user->id)
+        {
+            abort(401);
+        }
+        
         return view('profile.edit', compact('user'));
     }
 
