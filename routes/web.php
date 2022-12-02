@@ -33,4 +33,6 @@ Route::controller(AuthController::class)->group(function() {
 
 Route::controller(ProfileController::class)->group(function() {
     Route::get('profile', 'index')->name('profile.index');
+    Route::get('profile/{user}', 'edit')->name('profile.edit');
+    Route::put('profile/{user}', 'update')->name('profile.update');
 });
